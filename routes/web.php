@@ -10,7 +10,7 @@ Route::get('/', function () {
 
 
     return view('posts', [
-        'posts' => Post::get()
+        'posts' => Post::latest()->with(['category', 'author'])-> get()
     ]);
 });
 
