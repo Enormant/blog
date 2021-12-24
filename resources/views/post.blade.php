@@ -2,6 +2,7 @@
     <div class='post'>
         <article class='post'>
             <h1 class='blog-title uppercase'>{{$post->title;}} </h1>
+            <p>category: {{ $post->category->name}}</p>
             <div>{!! $post->body; !!}</div>
         </article>
     </div>
