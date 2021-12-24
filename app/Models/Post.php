@@ -12,6 +12,9 @@ class Post extends Model
     protected $fillable = ['title', 'excerpt', 'body', 'category_id'];
     protected $guarded = ['id'];
 
+    //eager loading to sort out N+1 sql call issue.
+    protected $with = ['category', 'author'];
+
     public function category () {
         return $this->belongsTo(Category::class);
     }
