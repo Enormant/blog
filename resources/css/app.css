@@ -1,0 +1,21 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+.blog-title {
+    font-size: 2rem;
+    margin: auto;
+    width: 100%;
+    padding: 10px;
+    text-align: center;;
+}
+
+article + article {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid #ccc;
+}
+
+article > h2 {
+    padding: 1.5rem 0;
+}
