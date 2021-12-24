@@ -8,14 +8,14 @@ Route::get('/', function () {
 
 
     return view('posts', [
-        'posts' => Post::get_posts()
+        'posts' => Post::all()
     ]);
 });
 
-Route::get('/posts/{post}', function ($slug) {
+Route::get('/posts/{post}', function (Post $post) {
 
     return view('post', [
-        'post' => Post::findOrFail($slug)
+        'post' => $post
     ]);
 
 });

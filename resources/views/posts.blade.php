@@ -2,8 +2,8 @@
     <div class='posts'>
         @foreach ($posts as $post) 
         <article class='post'>
-                <h1><a href='/posts/<?= $post->filename ?>'><?= $post->title; ?></a></h1>
-                <div><?= $post->exceprt; ?></div>
+                <h1><a href='/posts/<?= $post->id ?>'><?= $post->title; ?></a></h1>
+                <div><?= $post->excerpt; ?></div>
             </article>
         @endforeach
     </div>
