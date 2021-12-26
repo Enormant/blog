@@ -13,7 +13,7 @@ class Post extends Model
     protected $guarded = ['id'];
 
     //eager loading to sort out N+1 sql call issue.
-    protected $with = ['category', 'author'];
+    protected $with = ['category', 'user'];
 
     public function category () {
         return $this->belongsTo(Category::class);
