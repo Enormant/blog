@@ -8,11 +8,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
 
-
+ 
     return view('posts', [
         'posts' => Post::latest()-> get()
     ]);
-});
+})->name(
+    'posts'
+);
 
 Route::get('/posts/{post}', function (Post $post) {
 
@@ -28,7 +30,7 @@ Route::get('category/{category:slug}', function( Category $category) {
     return view('posts', [
         'posts' => $category->posts
     ]);
-});
+})-> name('categories');
 
 Route::get('user/{user}', function( User $user) {
  
