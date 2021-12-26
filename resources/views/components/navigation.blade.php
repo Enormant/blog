@@ -22,33 +22,19 @@
 
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ml-6">
-                <x-dropdown align="center" width="48">
-                    <x-slot name="trigger">
-                        <button class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
-                            <div>{{ Auth::user()->name }}</div>
+                <x-label :value="Auth::user()->name" />
+                <div name="content" class="px-4">
+                    <!-- Authentication -->
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
 
-                            <div class="ml-1">
-                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                </svg>
-                            </div>
-                        </button>
-                    </x-slot>
-
-                    <x-slot name="content">
-                        <!-- Authentication -->
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-
-                            <x-dropdown-link :href="route('logout')"
-                                    onclick="event.preventDefault();
-                                                this.closest('form').submit();">
-                                {{ __('Log Out') }}
-                            </x-dropdown-link>
-                        </form>
-                    </x-slot>
-                </x-dropdown>
-               
+                        <x-button 
+                                onclick="event.preventDefault();
+                                            this.closest('form').submit();">
+                            {{ __('Log Out') }}
+                        </x-button>
+                    </form>
+                </div>
             </div>
 
            
@@ -69,9 +55,10 @@
         <hr />
         <div class="flex  justify-center h-16">
              <!-- Settings Dropdown -->
-             <select class=" sm:flex sm:items-center sm:ml-6 h-16" onchange="location += this.value;">
+             <select class=" sm:flex sm:items-center sm:ml-6 h-16" onchange="location = location.origin+=this.value">
+                <option value="" disabled selected>Select a category</option>
                 @foreach ($categories as $category)
-                    <option value="category/{{$category -> slug}}">
+                    <option value="/category/{{$category -> slug}}">
                         
                             {{ $category -> name }}
                     
@@ -81,10 +68,12 @@
              
             <div class=" flex items-center justify-center px-2">
                 <div class=" overflow-hidden flex">
-                  <input type="text" class="px-4" placeholder="Search...">
-                  <button class="flex items-center justify-center px-4 ">
-                    <svg class="h-4 w-4 text-grey" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.32 14.9l5.39 5.4a1 1 0 0 1-1.42 1.4l-5.38-5.38a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z"/></svg>
-                  </button>
+                  <form method="GET" action="#">
+                    <input type="text" class="px-4" name='search' placeholder="Search..." 
+                            value={{request('search')}}
+                             >
+                   
+                  </form>
                 </div>
               </div>   
         </div>
