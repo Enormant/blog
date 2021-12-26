@@ -1,4 +1,4 @@
-
+@props(['categories'])
 
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
     <!-- Primary Navigation Menu -->
@@ -48,7 +48,10 @@
                         </form>
                     </x-slot>
                 </x-dropdown>
+               
             </div>
+
+           
 
             <!-- Hamburger -->
             <div class="-mr-2 flex items-center sm:hidden">
@@ -61,7 +64,33 @@
             </div>
         </div>
     </div>
-   
+      <!-- Secondary Navigation Menu -->
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
+        <hr />
+        <div class="flex  justify-center h-16">
+             <!-- Settings Dropdown -->
+             <select class=" sm:flex sm:items-center sm:ml-6 h-16" onchange="location += this.value;">
+                @foreach ($categories as $category)
+                    <option value="category/{{$category -> slug}}">
+                        
+                            {{ $category -> name }}
+                    
+                    </option>
+                 @endforeach
+             </select>
+             
+            <div class=" flex items-center justify-center px-2">
+                <div class=" overflow-hidden flex">
+                  <input type="text" class="px-4" placeholder="Search...">
+                  <button class="flex items-center justify-center px-4 ">
+                    <svg class="h-4 w-4 text-grey" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.32 14.9l5.39 5.4a1 1 0 0 1-1.42 1.4l-5.38-5.38a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z"/></svg>
+                  </button>
+                </div>
+              </div>   
+        </div>
+        
+    </div>
+
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">

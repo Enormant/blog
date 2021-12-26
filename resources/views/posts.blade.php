@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout :categories="$categories">
     <div class='grid grid-cols-2 gap-4 '>
         @foreach ($posts as $post) 
            

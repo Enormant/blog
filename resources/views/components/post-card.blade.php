@@ -1,4 +1,4 @@
-@props(['post'])
+@props(['post', 'categories'])
 
 <article class="max-w-sm w-full lg:max-w-full lg:flex items-stretch">
     <div class="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden" style="background-image: url('/assets/card-left.jpg')" title="Woman holding a mug">
@@ -11,7 +11,7 @@
       <div class="flex items-left">
         <div class=" py-2 ">
             <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-               <a href="/category/{{$post->category->slug}}">#{{$post->category->name}}</a>
+               <a href="/category/{{$post->category->id}}">#{{$post->category->name}}</a>
             </span>
         </div>
       </div>

@@ -26,17 +26,7 @@ class DatabaseSeeder extends Seeder
             'user_id' => $user->id
         ]);
 
-        $user2 = User::factory() -> create();
-
-        Post::factory(5) -> create([
-            'user_id' => $user2->id
-        ]);
-
-        $user3 = User::factory() -> create();
-
-        Post::factory(5) -> create([
-            'user_id' => $user3->id
-        ]);
+      
         
      
     }

@@ -1,3 +1,5 @@
+@props([ 'categories'])
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -8,8 +10,9 @@
         <title>Laravel</title>      
     </head>
     <body class="antialiased container mx-auto">
+        
         <h1 class='uppercase blog-title'>Swayam's Blog<h1>
-            <x-app-layout>
+            <x-navigation :categories="$categories" />
                 <x-slot name="header">
                     <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                         {{ __('Dashboard') }}
@@ -25,7 +28,6 @@
                         </div>
                     </div>
                 </div>
-            </x-app-layout>
             
     </body>
 </html>
