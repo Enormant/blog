@@ -678,9 +678,6 @@ select {
 .mt-2 {
   margin-top: 0.5rem;
 }
-.mb-8 {
-  margin-bottom: 2rem;
-}
 .mb-2 {
   margin-bottom: 0.5rem;
 }
@@ -744,6 +741,9 @@ select {
 .h-48 {
   height: 12rem;
 }
+.h-60 {
+  height: 15rem;
+}
 .min-h-screen {
   min-height: 100vh;
 }
@@ -788,6 +788,9 @@ select {
 }
 .max-w-xl {
   max-width: 36rem;
+}
+.max-w-sm {
+  max-width: 24rem;
 }
 .flex-1 {
   flex: 1 1 0%;
@@ -838,6 +841,9 @@ select {
 .grid-cols-1 {
   grid-template-columns: repeat(1, minmax(0, 1fr));
 }
+.grid-cols-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
 .flex-row {
   flex-direction: row;
 }
@@ -847,8 +853,14 @@ select {
 .flex-wrap {
   flex-wrap: wrap;
 }
+.content-center {
+  align-content: center;
+}
 .items-center {
   align-items: center;
+}
+.items-stretch {
+  align-items: stretch;
 }
 .justify-end {
   justify-content: flex-end;
@@ -859,6 +871,12 @@ select {
 .justify-between {
   justify-content: space-between;
 }
+.justify-items-stretch {
+  justify-items: stretch;
+}
+.gap-4 {
+  gap: 1rem;
+}
 .space-x-8 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-x-reverse: 0;
   margin-right: calc(2rem * var(--tw-space-x-reverse));
@@ -868,6 +886,9 @@ select {
   --tw-space-y-reverse: 0;
   margin-top: calc(0.25rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(0.25rem * var(--tw-space-y-reverse));
+}
+.justify-self-center {
+  justify-self: center;
 }
 .overflow-hidden {
   overflow: hidden;
@@ -969,13 +990,13 @@ select {
   --tw-bg-opacity: 1;
   background-color: rgb(243 244 246 / var(--tw-bg-opacity));
 }
-.bg-gray-800 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(31 41 55 / var(--tw-bg-opacity));
-}
 .bg-gray-200 {
   --tw-bg-opacity: 1;
   background-color: rgb(229 231 235 / var(--tw-bg-opacity));
+}
+.bg-gray-800 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(31 41 55 / var(--tw-bg-opacity));
 }
 .bg-cover {
   background-size: cover;
@@ -1058,9 +1079,6 @@ select {
 }
 .pt-8 {
   padding-top: 2rem;
-}
-.pb-2 {
-  padding-bottom: 0.5rem;
 }
 .text-left {
   text-align: left;
@@ -1183,6 +1201,10 @@ select {
   --tw-text-opacity: 1;
   color: rgb(209 213 219 / var(--tw-text-opacity));
 }
+.text-black {
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity));
+}
 .underline {
   -webkit-text-decoration-line: underline;
           text-decoration-line: underline;
@@ -1267,11 +1289,6 @@ select {
 }
 article + article {
     margin-top: 2rem;
-    padding-top: 2rem;
-    border-top: 1px solid #ccc;
-}
-article > h2 {
-    padding: 1.5rem 0;
 }
 .hover\:border-gray-300:hover {
   --tw-border-opacity: 1;
@@ -1572,3 +1589,5 @@ article > h2 {
     padding-right: 2rem;
   }
 }
+
+
