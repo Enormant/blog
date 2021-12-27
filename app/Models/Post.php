@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Comment as ModelsComment;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -13,7 +14,7 @@ class Post extends Model
     protected $guarded = ['id'];
 
     //eager loading to sort out N+1 sql call issue.
-    protected $with = ['category', 'author'];
+    protected $with = ['category', 'user'];
 
     public function category () {
         return $this->belongsTo(Category::class);
@@ -21,5 +22,9 @@ class Post extends Model
 
     public function user () {
         return $this->belongsTo(User::class);
+    }
+
+    public function comments () {
+        return $this->hasMany(ModelsComment::class);
     }
 }

@@ -1,11 +1,18 @@
-<x-layout>
-    <div class='posts'>
+
+
+<x-layout :categories="$categories">
+    <div class='grid grid-cols-2 gap-4 '>
         @foreach ($posts as $post) 
-        <article class='post'>
-                <h1><a href='/posts/{{$post->id}}'> {{$post->title }}</a></h1>
-                <div><a href="/category/{{$post->category->slug}}">{{$post->category->name}}</a></div>
-                <div><?= $post->excerpt; ?></div>
-            </article>
+           
+
+            <x-post-card :post="$post" />
         @endforeach
     </div>
+
+    @if($posts instanceof \Illuminate\Pagination\LengthAwarePaginator))
+    
+    <div class='grid grid-cols-1 gap-4 px-2 py-8'>
+        {{ $posts -> links()}}
+    </div>
+    @endif
 </x-layout>

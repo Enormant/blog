@@ -1,4 +1,4 @@
-
+@props(['categories'])
 
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
     <!-- Primary Navigation Menu -->
@@ -21,34 +21,37 @@
             </div>
 
             <!-- Settings Dropdown -->
+            @if(Auth::user())
             <div class="hidden sm:flex sm:items-center sm:ml-6">
-                <x-dropdown align="center" width="48">
-                    <x-slot name="trigger">
-                        <button class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
-                            <div>{{ Auth::user()->name }}</div>
+                <x-label :value="Auth::user()->name" />
+                <div name="content" class="px-4">
+                    <!-- Authentication -->
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
 
-                            <div class="ml-1">
-                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                </svg>
-                            </div>
-                        </button>
-                    </x-slot>
-
-                    <x-slot name="content">
-                        <!-- Authentication -->
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-
-                            <x-dropdown-link :href="route('logout')"
-                                    onclick="event.preventDefault();
-                                                this.closest('form').submit();">
-                                {{ __('Log Out') }}
-                            </x-dropdown-link>
-                        </form>
-                    </x-slot>
-                </x-dropdown>
+                        <x-button 
+                                onclick="event.preventDefault();
+                                            this.closest('form').submit();">
+                            {{ __('Log Out') }}
+                        </x-button>
+                    </form>
+                </div>
             </div>
+                
+            @else
+            
+            <div class="hidden sm:flex sm:items-center sm:ml-6">
+                <div name="content" class="px-4">
+                    <!-- Authentication -->
+                    <a href='/login'> login </a>
+                </div>
+                <div name="content" class="px-4">
+                    <!-- Authentication -->
+                    <a href='/register'> register </a>
+                </div>
+            </div>
+                
+            @endif
 
             <!-- Hamburger -->
             <div class="-mr-2 flex items-center sm:hidden">
@@ -61,7 +64,35 @@
             </div>
         </div>
     </div>
-   
+      <!-- Secondary Navigation Menu -->
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
+        <hr />
+        <div class="flex  justify-center h-16">
+             <!-- Settings Dropdown -->
+             <select class=" sm:flex sm:items-center sm:ml-6 h-16" onchange="location = location.origin+=this.value">
+                <option value="" disabled selected>Select a category</option>
+                @foreach ($categories as $category)
+                    <option value="/category/{{$category -> slug}}">
+                        
+                            {{ $category -> name }}
+                    
+                    </option>
+                 @endforeach
+             </select>
+             
+            <div class=" flex items-center justify-center px-2">
+                <div class=" overflow-hidden flex">
+                  <form method="GET" action="#">
+                    <input type="text" class="px-4" name='search' placeholder="Search..." 
+                            value={{request('search')}}
+                             >
+                   
+                </div>
+              </div>   
+        </div>
+        
+    </div>
+
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
@@ -72,6 +103,7 @@
 
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">
+           @if(Auth::user())
             <div class="px-4">
                 <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
                 <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
@@ -89,6 +121,7 @@
                     </x-responsive-nav-link>
                 </form>
             </div>
+            @endif
         </div>
     </div>
 </nav>
