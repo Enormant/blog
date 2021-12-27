@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PostController;
 use App\Models\Category;
 use App\Models\Post;
@@ -8,7 +9,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', [PostController:: class, 'index'])
--> middleware(['auth']) -> name('posts') ;
+-> name('posts') ;
 
 Route::get('/posts/{post}', function (Post $post) {
 
@@ -18,6 +19,8 @@ Route::get('/posts/{post}', function (Post $post) {
     ]);
 
 });
+
+Route::post('/post/{post}/comments', [CommentController::class, 'store']);
 
 
 Route::get('category/{category:slug}', function( Category $category) {

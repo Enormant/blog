@@ -10,7 +10,3 @@
     text-align: center;;
 }
 
-article + article {
-    margin-top: 2rem;
-}
-

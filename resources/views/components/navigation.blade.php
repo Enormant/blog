@@ -21,6 +21,7 @@
             </div>
 
             <!-- Settings Dropdown -->
+            @if(Auth::user())
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 <x-label :value="Auth::user()->name" />
                 <div name="content" class="px-4">
@@ -36,8 +37,21 @@
                     </form>
                 </div>
             </div>
-
-           
+                
+            @else
+            
+            <div class="hidden sm:flex sm:items-center sm:ml-6">
+                <div name="content" class="px-4">
+                    <!-- Authentication -->
+                    <a href='/login'> login </a>
+                </div>
+                <div name="content" class="px-4">
+                    <!-- Authentication -->
+                    <a href='/register'> register </a>
+                </div>
+            </div>
+                
+            @endif
 
             <!-- Hamburger -->
             <div class="-mr-2 flex items-center sm:hidden">
@@ -73,7 +87,6 @@
                             value={{request('search')}}
                              >
                    
-                  </form>
                 </div>
               </div>   
         </div>
@@ -90,6 +103,7 @@
 
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">
+           @if(Auth::user())
             <div class="px-4">
                 <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
                 <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
@@ -107,6 +121,7 @@
                     </x-responsive-nav-link>
                 </form>
             </div>
+            @endif
         </div>
     </div>
 </nav>

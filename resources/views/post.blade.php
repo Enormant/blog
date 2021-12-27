@@ -1,5 +1,5 @@
 <x-layout :categories="$categories">
-    <div class='post grid grid-cols-1'>
+    <div class='post container mx-auto px-16'>
         <article >
             <h1 class='blog-title uppercase mx-8'>{{$post->title;}} </h1>
             <div class='flex flex-row  py-6'>
@@ -8,12 +8,14 @@
             </div>
             <div>{!! $post->body; !!}</div>
         </article>
-        <section name='comments' class='my-8 '>
-
-            <x-post-comment />
-            <x-post-comment />
-            <x-post-comment />
-            <x-post-comment />
+        <section name='comments' class='my-8 lg:grid-cols-1 lg:gap-8'>
+            @if(Auth::user())
+             <x-comment-form :post="$post" />
+            @endif
+            @foreach ($post -> comments as $comment)
+               <x-post-comment :comment="$comment"/>
+            @endforeach
+          
         </section>
     </div>
 
