@@ -10,7 +10,7 @@ class Post extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'excerpt', 'body', 'category_id'];
+    protected $fillable = ['title', 'excerpt', 'body', 'category_id', 'user_id', 'picture'];
     protected $guarded = ['id'];
 
     //eager loading to sort out N+1 sql call issue.

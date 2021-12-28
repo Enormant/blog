@@ -3,12 +3,15 @@
     @csrf
 
     <header class='flex items-center py-4' >
-        <img src='https://i.pravatar.cc/60?u={{auth()->id()}}' alt='' width="40" height="40" class='rounded-full ' />
+        <img src='https://i.pravatar.cc/60?' alt='' width="40" height="40" class='rounded-full ' />
         <h2 class='ml-4'> Share your thoughts. </h2>
     </header>
     <div>
         <textarea name='body' class='w-full text-sm rounded-lg focus:outline' cols='30' rows='5' placeholder=" type your comment here"></textarea>
     </div>
+    @error('body')
+        <span class='text-red-500 text-xs'>you cant post an empty comment</span>   
+    @enderror
 
     <div class='flex justify-end'>
         <button type='submit' class='bg-indigo-600 text-white px-6 py-1 my-4  uppercase hover:bg-indigo-900 rounded-xl'> Post </button>
