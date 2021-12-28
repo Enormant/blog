@@ -34,7 +34,8 @@ class DatabaseSeeder extends Seeder
 
         Post::factory(5) -> create([
             'user_id' => $user->id,
-            'category_id' => Category::all()[1]
+            'category_id' => Category::all()[1],
+            'picture' => 'thumbnails/example.jpeg'
         ]);
 
         Post::factory(5) -> create([

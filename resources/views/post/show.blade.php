@@ -1,4 +1,4 @@
-<x-layout :categories="$categories">
+<x-layout >
     <div class='post container mx-auto px-16'>
         <article >
             <h1 class='blog-title uppercase mx-8'>{{$post->title;}} </h1>
@@ -6,6 +6,7 @@
                in <div class='px-2  text-indigo-700 '><a href="/category/{{$post->category->slug}}"> {{ $post->category->name}}</a></div>
                 by <div class='px-2 text-indigo-700 '><a href="/user/{{$post->user->id}}"> {{ $post->user->name}}</a></div>
             </div>
+            <img src={{ asset('storage/' . $post -> picture) }} />
             <div>{!! $post->body; !!}</div>
         </article>
         <section name='comments' class='my-8 lg:grid-cols-1 lg:gap-8'>

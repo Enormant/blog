@@ -1,4 +1,4 @@
-@props([ 'categories'])
+
 
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
@@ -12,7 +12,7 @@
     <body class="antialiased container mx-auto">
         
         <h1 class='uppercase blog-title'>Swayam's Blog<h1>
-            <x-navigation :categories="$categories" />
+            <x-navigation />
                 <x-slot name="header">
                     <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                         {{ __('Dashboard') }}

@@ -1,4 +1,4 @@
-@props(['categories'])
+
 
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
     <!-- Primary Navigation Menu -->
@@ -15,15 +15,34 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('posts')" :active="request()->routeIs('dashboard')">
-                        {{ __('Posts') }}
+                        {{ __('All Posts') }}
                     </x-nav-link>
                 </div>
+
+          
+                @if(Auth::user() )
+                
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('edit posts')" >
+                        {{ __('Edit') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('new post')" >
+                        {{ __('New') }}
+                    </x-nav-link>
+                </div>
+                @endif
+                
+               
             </div>
 
             <!-- Settings Dropdown -->
             @if(Auth::user())
             <div class="hidden sm:flex sm:items-center sm:ml-6">
+
                 <x-label :value="Auth::user()->name" />
+                
                 <div name="content" class="px-4">
                     <!-- Authentication -->
                     <form method="POST" action="{{ route('logout') }}">
@@ -69,16 +88,7 @@
         <hr />
         <div class="flex  justify-center h-16">
              <!-- Settings Dropdown -->
-             <select class=" sm:flex sm:items-center sm:ml-6 h-16" onchange="location = location.origin+=this.value">
-                <option value="" disabled selected>Select a category</option>
-                @foreach ($categories as $category)
-                    <option value="/category/{{$category -> slug}}">
-                        
-                            {{ $category -> name }}
-                    
-                    </option>
-                 @endforeach
-             </select>
+            <x-category-dropdown />
              
             <div class=" flex items-center justify-center px-2">
                 <div class=" overflow-hidden flex">
